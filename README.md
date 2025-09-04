@@ -11,29 +11,26 @@ The animation features smooth letter transitions, bursts, and heart effects with
 ---
 
 ## 📂 Project Structure
-```
 
 .
 ├── index.html   # Main HTML file
 ├── style.css    # Styling for the animation
 └── script.js    # Animation logic using mo.js
 
-````
 
 ---
 
 ## 🛠️ Installation & Usage
 
 1. Clone this repository:
-   ```bash
+  
    git clone https://github.com/your-username/i-love-you-animation.git
-````
+
 
 2. Navigate to the project folder:
 
-   ```bash
    cd i-love-you-animation
-   ```
+
 3. Open `index.html` in your browser.
 
 ---
@@ -66,4 +63,5 @@ Feel free to fork this repo and submit pull requests with improvements!
 ## 📜 License
 
 This project is licensed under the **MIT License**.
+
 
