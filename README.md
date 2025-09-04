@@ -6,7 +6,7 @@ The animation features smooth letter transitions, bursts, and heart effects with
 ---
 
 ## 🚀 Live Demo
-👉 [Click here to view the demo](https://your-live-demo-link.com)
+👉 [Click here to view the demo][(https://nitesh-shaw-098.github.io/I-LOVE-YOU-ANIMATION/)]
 
 ---
 
@@ -63,5 +63,6 @@ Feel free to fork this repo and submit pull requests with improvements!
 ## 📜 License
 
 This project is licensed under the **MIT License**.
+
 
 
