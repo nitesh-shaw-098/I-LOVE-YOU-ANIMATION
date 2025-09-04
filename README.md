@@ -1,6 +1,3 @@
-Here’s a professional `README.md` for your project with a **Live Demo option** included:
-
-```markdown
 # 💖 I Love You Animation
 
 A beautiful "I Love You" SVG animation built with **HTML, CSS, JavaScript**, and powered by [mo.js](https://mojs.github.io/).  
@@ -69,3 +66,4 @@ Feel free to fork this repo and submit pull requests with improvements!
 ## 📜 License
 
 This project is licensed under the **MIT License**.
+
