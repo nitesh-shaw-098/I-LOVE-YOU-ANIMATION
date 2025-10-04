@@ -5,7 +5,9 @@ The animation features smooth letter transitions, bursts, and heart effects with
 
 ---
 
-## 🚀 Demonstration A live version of the animation can be viewed here: [View Live Demo](https://nitesh-shaw-098.github.io/I-LOVE-YOU-ANIMATION/) -----
+## 🚀 Demonstration 
+
+A live version of the animation can be viewed here: [View Live Demo](https://nitesh-shaw-098.github.io/I-LOVE-YOU-ANIMATION/) -----
 ---
 
 ## 📂 Project Structure
@@ -66,3 +68,4 @@ This project is licensed under the **MIT License**.
 
 
 rewrite it in a professional way
+
