@@ -1,7 +1,7 @@
 const qs = document.querySelector.bind(document);
 const easingHeart = mojs.easing.path(
-  "M0,100C2.9,86.7,33.6-7.3,46-7.3s15.2,22.7,26,22.7S89,0,100,0"
-);
+"M0,100C2.9,86.7,33.6-7.3,46-7.3s15.2,22.7,26,22.7S89,0,100,0");
+
 
 const el = {
   container: qs(".mo-container"),
@@ -23,8 +23,8 @@ const el = {
 
   blup: qs(".blup"),
   blop: qs(".blop"),
-  sound: qs(".sound"),
-};
+  sound: qs(".sound") };
+
 
 class Heart extends mojs.CustomShape {
   getShape() {
@@ -32,8 +32,7 @@ class Heart extends mojs.CustomShape {
   }
   getLength() {
     return 200;
-  }
-}
+  }}
 
 mojs.addShape("heart", Heart);
 
@@ -49,8 +48,8 @@ const crtBoom = (delay = 0, x = 0, rd = 46) => {
     duration: 500 / 3,
     parent,
     delay,
-    x,
-  });
+    x });
+
 
   const brst = new mojs.Burst({
     radius: { [rd + 15]: 110 },
@@ -66,9 +65,9 @@ const crtBoom = (delay = 0, x = 0, rd = 46) => {
       pathScale: [0.8, null],
       degreeShift: ["rand(13, 60)", null],
       duration: 1000 / 3,
-      easing: "quint.out",
-    },
-  });
+      easing: "quint.out" } });
+
+
 
   return [crcl, brst];
 };
@@ -83,304 +82,304 @@ const crtLoveTl = () => {
   const delta = 150;
 
   return new mojs.Timeline().add([
-    new mojs.Tween({
-      duration: move,
-      onStart: () => {
-        [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach((el) => {
-          el.style.opacity = 1;
-          el.style =
-            "transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: 1;";
-        });
-      },
-      onComplete: () => {
-        [el.l, el.o, el.v, el.e].forEach((el) => (el.style.opacity = 0));
-        el.blop.play();
-      },
-    }),
+  new mojs.Tween({
+    duration: move,
+    onStart: () => {
+      [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach(el => {
+        el.style.opacity = 1;
+        el.style =
+        "transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: 1;";
+      });
+    },
+    onComplete: () => {
+      [el.l, el.o, el.v, el.e].forEach(el => el.style.opacity = 0);
+      el.blop.play();
+    } }),
 
-    new mojs.Tween({
-      duration: move * 2 + boom,
-      onComplete: () => {
-        [el.y, el.o2].forEach((el) => (el.style.opacity = 0));
-        el.blop.play();
-      },
-    }),
 
-    new mojs.Tween({
-      duration: move * 3 + boom * 2 - delta,
-      onComplete: () => {
-        el.i.style.opacity = 0;
-        el.blop.play();
-      },
-    }),
+  new mojs.Tween({
+    duration: move * 2 + boom,
+    onComplete: () => {
+      [el.y, el.o2].forEach(el => el.style.opacity = 0);
+      el.blop.play();
+    } }),
 
-    new mojs.Tween({
-      duration: move * 3 + boom * 2,
-      onComplete: () => {
-        el.u.style.opacity = 0;
-        el.blup.play();
-      },
-    }),
 
-    new mojs.Tween({
-      duration: 50,
-      delay: 4050,
-      onUpdate: (progress) => {
-        [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach((el) => {
-          el.style = `transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: ${
-            1 * progress
-          };`;
-        });
-      },
-      onComplete: () => {
-        [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach((el) => {
-          el.style.opacity = 1;
-          el.style =
-            "transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: 1;";
-        });
-      },
-    }),
+  new mojs.Tween({
+    duration: move * 3 + boom * 2 - delta,
+    onComplete: () => {
+      el.i.style.opacity = 0;
+      el.blop.play();
+    } }),
 
-    new mojs.Html({
-      ...opts,
-      el: el.lineLeft,
-      x: { 0: 52 },
-    })
-      .then({
-        duration: boom + move,
-        easing,
-        x: { to: 52 + 54 },
-      })
-      .then({
-        duration: boom + move,
-        easing,
-        x: { to: 52 + 54 + 60 },
-      })
-      .then({
-        duration: 150, // 3550
-        easing,
-        x: { to: 52 + 54 + 60 + 10 },
-      })
-      .then({
-        duration: 300,
-      })
-      .then({
-        duration: 350,
-        x: { to: 0 },
-        easing: easingOut,
-      }),
 
-    new mojs.Html({
-      ...opts,
-      el: el.lineRight,
-      x: { 0: -52 },
-    })
-      .then({
-        duration: boom + move,
-        easing,
-        x: { to: -52 - 54 },
-      })
-      .then({
-        duration: boom + move,
-        easing,
-        x: { to: -52 - 54 - 60 },
-      })
-      .then({
-        duration: 150,
-        easing,
-        x: { to: -52 - 54 - 60 - 10 },
-      })
-      .then({
-        duration: 300,
-      })
-      .then({
-        duration: 350,
-        x: { to: 0 },
-        easing: easingOut,
-      }),
+  new mojs.Tween({
+    duration: move * 3 + boom * 2,
+    onComplete: () => {
+      el.u.style.opacity = 0;
+      el.blup.play();
+    } }),
 
-    new mojs.Html({
-      // [I] LOVE YOU
-      ...opts,
-      el: el.i,
-      x: { 0: 34 },
-    })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: 34 + 19 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: 34 + 19 + 40 },
-      })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: 34 + 19 + 40 + 30 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: 34 + 19 + 40 + 30 + 30 },
-      }),
 
-    new mojs.Html({
-      // I [L]OVE YOU
-      ...opts,
-      el: el.l,
-      x: { 0: 15 },
-    }),
+  new mojs.Tween({
+    duration: 50,
+    delay: 4050,
+    onUpdate: progress => {
+      [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach(el => {
+        el.style = `transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: ${
+        1 * progress
+        };`;
+      });
+    },
+    onComplete: () => {
+      [el.i, el.l, el.o, el.v, el.e, el.y, el.o2, el.u].forEach(el => {
+        el.style.opacity = 1;
+        el.style =
+        "transform: translate(0px, 0px) rotate(0deg) skew(0deg, 0deg) scale(1, 1); opacity: 1;";
+      });
+    } }),
 
-    new mojs.Html({
-      // I L[O]VE YOU
-      ...opts,
-      el: el.o,
-      x: { 0: 11 },
-    }),
 
-    new mojs.Html({
-      // I LO[V]E YOU
-      ...opts,
-      el: el.v,
-      x: { 0: 3 },
-    }),
+  new mojs.Html({
+    ...opts,
+    el: el.lineLeft,
+    x: { 0: 52 } }).
 
-    new mojs.Html({
-      // I LOV[E] YOU
-      ...opts,
-      el: el.e,
-      x: { 0: -3 },
-    }),
+  then({
+    duration: boom + move,
+    easing,
+    x: { to: 52 + 54 } }).
 
-    new mojs.Html({
-      // I LOVE [Y]OU
-      ...opts,
-      el: el.y,
-      x: { 0: -20 },
-    })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: -20 - 33 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: -20 - 33 - 24 },
-      }),
+  then({
+    duration: boom + move,
+    easing,
+    x: { to: 52 + 54 + 60 } }).
 
-    new mojs.Html({
-      // I LOVE Y[O]U
-      ...opts,
-      el: el.o2,
-      x: { 0: -27 },
-    })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: -27 - 27 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: -27 - 27 - 30 },
-      }),
+  then({
+    duration: 150, // 3550
+    easing,
+    x: { to: 52 + 54 + 60 + 10 } }).
 
-    new mojs.Html({
-      // I LOVE YO[U]
-      ...opts,
-      el: el.u,
-      x: { 0: -32 },
-    })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: -32 - 21 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: -32 - 21 - 36 },
-      })
-      .then({
-        duration: boom,
-        easing: easingBoom,
-        x: { to: -32 - 21 - 36 - 31 },
-      })
-      .then({
-        duration: move,
-        easing,
-        x: { to: -32 - 21 - 36 - 31 - 27 },
-      }),
+  then({
+    duration: 300 }).
 
-    new mojs.Shape({
-      parent: el.container,
-      shape: "heart",
-      delay: move,
-      fill: el.colHeart,
-      x: -64,
-      scale: { 0: 0.95, easing: easingHeart },
-      duration: 500,
-    })
-      .then({
-        x: { to: -62, easing },
-        scale: { to: 0.65, easing },
-        duration: boom + move - 500,
-      })
-      .then({
-        duration: boom - 50,
-        x: { to: -62 + 48 },
-        scale: { to: 0.9 },
-        easing: easingBoom,
-      })
-      .then({
-        duration: 125,
-        scale: { to: 0.8 },
-        easing: easingOut,
-      })
-      .then({
-        duration: 125,
-        scale: { to: 0.85 },
-        easing: easingOut,
-      })
-      .then({
-        duration: move - 200,
-        scale: { to: 0.45 },
-        easing,
-      })
-      .then({
-        delay: -75,
-        duration: 150,
-        x: { to: 0 },
-        scale: { to: 0.9 },
-        easing: easingBoom,
-      })
-      .then({
-        duration: 125,
-        scale: { to: 0.8 },
-        easing: easingOut,
-      })
-      .then({
-        duration: 125, // 3725
-        scale: { to: 0.85 },
-        easing: easingOut,
-      })
-      .then({
-        duration: 125, // 3850
-      })
-      .then({
-        duration: 350,
-        scale: { to: 0 },
-        easing: easingOut,
-      }),
+  then({
+    duration: 350,
+    x: { to: 0 },
+    easing: easingOut }),
 
-    ...crtBoom(move, -64, 46),
-    ...crtBoom(move * 2 + boom, 18, 34),
-    ...crtBoom(move * 3 + boom * 2 - delta, -64, 34),
-    ...crtBoom(move * 3 + boom * 2, 45, 34),
-  ]);
+
+  new mojs.Html({
+    ...opts,
+    el: el.lineRight,
+    x: { 0: -52 } }).
+
+  then({
+    duration: boom + move,
+    easing,
+    x: { to: -52 - 54 } }).
+
+  then({
+    duration: boom + move,
+    easing,
+    x: { to: -52 - 54 - 60 } }).
+
+  then({
+    duration: 150,
+    easing,
+    x: { to: -52 - 54 - 60 - 10 } }).
+
+  then({
+    duration: 300 }).
+
+  then({
+    duration: 350,
+    x: { to: 0 },
+    easing: easingOut }),
+
+
+  new mojs.Html({
+    // [I] LOVE YOU
+    ...opts,
+    el: el.i,
+    x: { 0: 34 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: 34 + 19 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: 34 + 19 + 40 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: 34 + 19 + 40 + 30 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: 34 + 19 + 40 + 30 + 30 } }),
+
+
+  new mojs.Html({
+    // I [L]OVE YOU
+    ...opts,
+    el: el.l,
+    x: { 0: 15 } }),
+
+
+  new mojs.Html({
+    // I L[O]VE YOU
+    ...opts,
+    el: el.o,
+    x: { 0: 11 } }),
+
+
+  new mojs.Html({
+    // I LO[V]E YOU
+    ...opts,
+    el: el.v,
+    x: { 0: 3 } }),
+
+
+  new mojs.Html({
+    // I LOV[E] YOU
+    ...opts,
+    el: el.e,
+    x: { 0: -3 } }),
+
+
+  new mojs.Html({
+    // I LOVE [Y]OU
+    ...opts,
+    el: el.y,
+    x: { 0: -20 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: -20 - 33 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: -20 - 33 - 24 } }),
+
+
+  new mojs.Html({
+    // I LOVE Y[O]U
+    ...opts,
+    el: el.o2,
+    x: { 0: -27 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: -27 - 27 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: -27 - 27 - 30 } }),
+
+
+  new mojs.Html({
+    // I LOVE YO[U]
+    ...opts,
+    el: el.u,
+    x: { 0: -32 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: -32 - 21 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: -32 - 21 - 36 } }).
+
+  then({
+    duration: boom,
+    easing: easingBoom,
+    x: { to: -32 - 21 - 36 - 31 } }).
+
+  then({
+    duration: move,
+    easing,
+    x: { to: -32 - 21 - 36 - 31 - 27 } }),
+
+
+  new mojs.Shape({
+    parent: el.container,
+    shape: "heart",
+    delay: move,
+    fill: el.colHeart,
+    x: -64,
+    scale: { 0: 0.95, easing: easingHeart },
+    duration: 500 }).
+
+  then({
+    x: { to: -62, easing },
+    scale: { to: 0.65, easing },
+    duration: boom + move - 500 }).
+
+  then({
+    duration: boom - 50,
+    x: { to: -62 + 48 },
+    scale: { to: 0.9 },
+    easing: easingBoom }).
+
+  then({
+    duration: 125,
+    scale: { to: 0.8 },
+    easing: easingOut }).
+
+  then({
+    duration: 125,
+    scale: { to: 0.85 },
+    easing: easingOut }).
+
+  then({
+    duration: move - 200,
+    scale: { to: 0.45 },
+    easing }).
+
+  then({
+    delay: -75,
+    duration: 150,
+    x: { to: 0 },
+    scale: { to: 0.9 },
+    easing: easingBoom }).
+
+  then({
+    duration: 125,
+    scale: { to: 0.8 },
+    easing: easingOut }).
+
+  then({
+    duration: 125, // 3725
+    scale: { to: 0.85 },
+    easing: easingOut }).
+
+  then({
+    duration: 125 // 3850
+  }).
+  then({
+    duration: 350,
+    scale: { to: 0 },
+    easing: easingOut }),
+
+
+  ...crtBoom(move, -64, 46),
+  ...crtBoom(move * 2 + boom, 18, 34),
+  ...crtBoom(move * 3 + boom * 2 - delta, -64, 34),
+  ...crtBoom(move * 3 + boom * 2, 45, 34)]);
+
 };
 
 const loveTl = crtLoveTl().play();
